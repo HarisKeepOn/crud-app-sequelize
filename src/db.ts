@@ -6,7 +6,8 @@ import * as pg from 'pg';
 const POSTGRES_URL = process.env.DATABASE_URL as unknown as string;
 const sequelize = new Sequelize(POSTGRES_URL,{
   dialect: "postgres",
-  
+ 
+  dialectModule: pg,
   dialectOptions: {
     ssl: {
       require: true,
