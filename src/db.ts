@@ -4,6 +4,7 @@ import { Sequelize, DataTypes } from "sequelize";
 const POSTGRES_URL = process.env.DATABASE_URL as unknown as string;
 const sequelize = new Sequelize(POSTGRES_URL,{
   dialect: "postgres",
+  dialectModule: require('pg'),
   dialectOptions: {
     ssl: {
       require: true,
