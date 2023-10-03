@@ -1,0 +1,9 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/a9f74b76-6958-4144-a398-e29417dfe973/resourceGroups/AzureFree/providers/Microsoft.Web/sites/post-shorts",
+    "appService.deploySubpath": ".",
+    "gitConfigUser.selectedProfile": "Personal"
+}
