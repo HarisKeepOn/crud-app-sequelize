@@ -3,6 +3,10 @@ import { Request, Response } from "express";
 import sgMail from "@sendgrid/mail";
 import BetaUser from "./beta-user.model";
 import { CreateBetaUserInput } from "./beta-user.schema";
+import * as path from 'path';
+import * as fs from 'fs';
+import * as ejs from 'ejs';
+
 
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
@@ -18,13 +22,16 @@ export const createBetaUserController = async (req: Request, res: Response) => {
   }
 
   const newUser = await BetaUser.create({ name, email });
+  const templatePath = path.resolve('src/modules/confirmation_email.html');
+  const template = fs.readFileSync(templatePath, 'utf-8');
+  const html = ejs.render(template, { name });
 
   const msg = {
     to: email,
     from: "support@postshorts.studio",
-    subject: "Welcome to Beta",
-    text: `Hello ${name}, welcome to our beta program.`,
-    html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+    subject: `Hello, ${name}`,
+    text: `Dear ${name}, this is a message from Postshorts Studio.`,
+    html: html,
   };
 
   await sgMail.send(msg);
