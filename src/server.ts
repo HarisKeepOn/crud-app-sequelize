@@ -25,7 +25,8 @@ app.get("/api/healthchecker", (req: Request, res: Response) => {
   });
 });
 
-app.use("/api/notes", noteRouter);
+app.use("/api", noteRouter);
+// app.use("/api/register-beta-user", noteRouter);
 
 app.all("*", (req: Request, res: Response) => {
   res.status(404).json({
